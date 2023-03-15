@@ -18,26 +18,39 @@ const MiApi = () => {
         setApi(data)
     }
 
-    const sortAZ = async() =>{
-        let asd = await api.sort()
+    let resultado  = api;
+
+    const ordenarMenor = () =>{
+        resultado = resultado.sort((a, b) => a.title.localeCompare(b.title))
+    console.log(resultado);
+    }
+
+
+    const ordenarMayor = () =>{
+        resultado = resultado.sort((b, a) => a.title.localeCompare(b.title))
+        console.log(resultado);
     }
 
     return (
-        <div>
-            <div>
+        <div className='container'>
+            <div className='d-flex my-3'>
                 <h4>Organizar por:</h4>
-                <button className='btn btn-outline-dark'
-                onClick={() => sortAZ()}>Nombre A-Z</button>
+                <button className='btn btn-outline-dark mx-3'
+                onClick={ordenarMenor}
+                >Nombre A-Z</button>
+                <button className='btn btn-outline-dark mx-3'
+                onClick={ordenarMayor}
+                >Nombre Z-A</button>
             </div>
-            <form >
+            <form className=' d-flex  justify-content-center my-3'>
                 <input type="text" 
                        value={filtro}
                        onChange={(e)=>setFiltro(e.target.value)}
                        placeholder="buscar articulo.."
-                       className="form-control" />
+                       className="form-control w-50" />
             </form>
             <div className='d-flex flex-wrap justify-content-evenly rounded'>
-            {api.filter((item) => {
+            {resultado.filter((item) => {
                 return filtro.toLowerCase() === "" 
                 ? item 
                 : item.title.toLowerCase().includes(filtro)

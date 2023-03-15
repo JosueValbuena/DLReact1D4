@@ -8,7 +8,9 @@ const Card = ({ api }) => {
                 <hr />
                 <div className="card-body">
                     <h5 className="card-title">{api.title}</h5>
+                    <div className='description'>
                     <p className="card-text">{api.description}</p>
+                    </div>
                     <p className="card-text">{api.price}</p>
                 </div>
         </div>
